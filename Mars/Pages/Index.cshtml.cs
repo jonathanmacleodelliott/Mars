@@ -44,7 +44,7 @@ namespace Mars.Pages
         public void OnGet(int x, int y, string command, int gridX, int gridY, string direction)
         {
             //Initialise first page load variables
-            
+
             try
             {
                 Command = HttpContext.Request.Query["command"].ToString();
@@ -54,16 +54,14 @@ namespace Mars.Pages
                 GridY = int.Parse(HttpContext.Request.Query["gridY"].ToString());
                 Direction = HttpContext.Request.Query["direction"].ToString();
             }
-            catch {
-                
+            catch
+            {
+
                 X = X == 0 ? 1 : 1;
                 Y = Y == 0 ? 1 : 1;
                 Direction = Direction == null ? "N" : "N";
             }
 
-           
-           
-           
         }
 
         public IActionResult OnPost(int x, int y, string command, int gridX, int gridY, string direction)
@@ -76,32 +74,31 @@ namespace Mars.Pages
             GridY = gridY;
             Direction = direction;
 
-           
-                foreach (char l in Command)
+            foreach (char l in Command)
+            {
+                if (l == 'F')
                 {
-                    if (l == 'F')
+                    if (CheckRobot(Direction, X, Y) == true)
                     {
-                        if (CheckRobot(Direction, X, Y) == true)
-                        {
 
-                            X = Direction == "E" ? ++X : X;
-                            X = Direction == "W" ? --X : X;
-                            Y = Direction == "N" ? ++Y : Y;
-                            Y = Direction == "S" ? --Y : Y;
-                        }
-
-                    }
-                    else if (l == 'R')
-                    {
-                        RotateRobot(Direction, l.ToString());
-                    }
-                    else if (l == 'L')
-                    {
-                        RotateRobot(Direction, l.ToString());
+                        X = Direction == "E" ? ++X : X;
+                        X = Direction == "W" ? --X : X;
+                        Y = Direction == "N" ? ++Y : Y;
+                        Y = Direction == "S" ? --Y : Y;
                     }
 
                 }
-            return RedirectToPage("/Index", new { x = X, y = Y, direction = Direction, gridX = GridX, gridY = GridY, command = Command }) ;
+                else if (l == 'R')
+                {
+                    RotateRobot(Direction, l.ToString());
+                }
+                else if (l == 'L')
+                {
+                    RotateRobot(Direction, l.ToString());
+                }
+
+            }
+            return RedirectToPage("/Index", new { x = X, y = Y, direction = Direction, gridX = GridX, gridY = GridY, command = Command });
         }
 
         public bool CheckRobot(string currentDirection, int x, int y)
@@ -114,7 +111,7 @@ namespace Mars.Pages
             else
                 return true;
         }
-        
+
         public void RotateRobot(string direction, string rotate)
         {
 
@@ -130,5 +127,5 @@ namespace Mars.Pages
         }
     }
 }
-   
+
 
