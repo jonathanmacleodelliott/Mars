@@ -98,7 +98,7 @@ namespace Mars.Pages
         public bool CheckRobot(string currentDirection, int x, int y)
         {
             //Check if within plateua
-            if (x == GridX && currentDirection == "E" || y == GridY && currentDirection == "N" || x == 1 && currentDirection == "W" || y == 1 && currentDirection == "S")
+            if (x >= GridX && currentDirection == "E" || y >= GridY && currentDirection == "N" || x == 1 && currentDirection == "W" || y == 1 && currentDirection == "S")
             {
                 return false;
             }
