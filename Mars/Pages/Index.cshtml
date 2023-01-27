@@ -1,0 +1,30 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Mars</h1>
+    <p>My current location is <strong>X:@Model.X ; Y:@Model.Y</strong></p>
+    <p>I'm facing: <strong>@Model.Direction</strong></p>
+    <p><strong>@Model.Command</strong></p>
+
+    <img src="~/images/robotAnimation.gif" width="20%" />
+
+    <form method="post" width="100%">
+        <input type="hidden" name="x" value="@Model.X">
+        <input type="hidden" name="y" value="@Model.Y">
+        <input type="hidden" name="direction" value="@Model.Direction">
+        <h4>Plateau size</h4>
+        <input type="number" placeholder="X Axis" name="gridX" step="1" min="1"> X
+        <input type="number" placeholder="Y Axis" name="gridY" step="1" min="1">
+        <br /><br />
+        <h4>Move me</h4>
+        <input type="text" placeholder="F, R, L" name="command">
+
+        <br /><br />
+        <input type="submit">
+    </form>
+
+</div>
