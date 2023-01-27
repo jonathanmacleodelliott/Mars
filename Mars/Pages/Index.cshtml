@@ -17,14 +17,23 @@
         <input type="hidden" name="y" value="@Model.Y">
         <input type="hidden" name="direction" value="@Model.Direction">
         <h4>Plateau size</h4>
-        <input type="number" placeholder="X Axis" name="gridX" step="1" min="1"> X
-        <input type="number" placeholder="Y Axis" name="gridY" step="1" min="1">
+        <div class="form-row">
+            <div class="col">
+                <input type="number" style="float:right" placeholder="X Axis" name="gridX" step="1" min="1">
+            </div> X
+            <div class="col">
+                <input type="number" style="float:left" placeholder="Y Axis" name="gridY" step="1" min="1">
+            </div>
+        </div>
+
+
         <br /><br />
         <h4>Move me</h4>
         <input type="text" placeholder="F, R, L" name="command">
 
         <br /><br />
-        <input type="submit">
+        <input type="submit" value="Move">
+        <input type="submit" value="Recalibrate" asp-page-handler="Home">
     </form>
 
 </div>

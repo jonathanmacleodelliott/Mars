@@ -95,7 +95,12 @@ namespace Mars.Pages
             return RedirectToPage("/Index", new { x = X, y = Y, direction = Direction, gridX = GridX, gridY = GridY, command = Command });
         }
 
-        public bool CheckRobot(string currentDirection, int x, int y)
+        public IActionResult OnPostHome()
+        {
+            return RedirectToPage("/Index");
+        }
+
+            public bool CheckRobot(string currentDirection, int x, int y)
         {
             //Check if within plateua
             if (x >= GridX && currentDirection == "E" || y >= GridY && currentDirection == "N" || x == 1 && currentDirection == "W" || y == 1 && currentDirection == "S")
